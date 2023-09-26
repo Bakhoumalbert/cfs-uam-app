@@ -8,14 +8,16 @@ import { Button } from "./button/button";
 
 // DESIGN SYSTEM
 export default function DesignSystem() {
+    
   return (
     <>
            <Container className="py-10 space-y-10">
                 {/* Typography */}
                 <div className="space-y-2">
                         <Typography variant="h1" weight="medium">
-                            Typography
+                            Typography 
                         </Typography>
+                        
                     <div className="flex flex-col gap-2 p-5 border border-gray-400 divide-y-2 divide-gray-400 rounded">
                         <div className="pb-5 space-y-2 pt-4">
                             <Typography variant="caption3" weight="medium">

@@ -1,5 +1,3 @@
-import { Header } from "@/pages/components/Header"
-import { Container } from "../container/container"
 import { Navigation } from "../navigation/navigation"
 import { Footer } from "../footer/footer"
 
