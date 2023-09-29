@@ -18,5 +18,5 @@ export interface LoginFormFielsType {
 }
 
 export interface ForgetPasswordFielsType {
-    email: string,
+    email: string
 }
