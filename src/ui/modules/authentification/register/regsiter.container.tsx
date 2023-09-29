@@ -5,7 +5,7 @@ import { useToggle } from "@/hooks/use-toggle";
 import { firebaseCreateUser, sendEmailVerificationProcedure } from "@/api/authentication";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
-import { firestoreCreateUserDocument } from "@/api/firestore";
+import { FirestoreCreateUserDocument, firestoreCreateUserDocument } from "@/api/firestore";
 
 export const RegisterContainer = () => {
 
@@ -23,7 +23,7 @@ export const RegisterContainer = () => {
 
   const handleCreateUserDocument = async (collectionName: string, documentID: string, document: object) => {
     console.log("Before create document and user the error ");
-    const { error } = await firestoreCreateUserDocument(collectionName, documentID, document);
+    const { error } = await FirestoreCreateUserDocument(collectionName, documentID, document);
     console.log("error : ", error);
     
     console.log("after create document");

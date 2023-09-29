@@ -2,7 +2,7 @@ import { db } from "@/config/firebase-config";
 import { FirebaseError } from "firebase/app";
 import { doc, setDoc } from "firebase/firestore";
 
-export const firestoreCreateUserDocument = async (collectionName: string, documentID: string, data: object) => {
+export const FirestoreCreateUserDocument = async (collectionName: string, documentID: string, data: object) => {
     try {
         // Creation de la refference du document 
         console.log("Before using the document ref and the setDoc ");
