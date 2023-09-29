@@ -38,7 +38,7 @@ export const RegisterContainer = () => {
     setIsLoading(false);
     reset()
     sendEmailVerificationProcedure()
-    
+
   }
 
   const handleCreateUserAuthentification = async ({ email, password }: RegisterFormFielsType) => {
