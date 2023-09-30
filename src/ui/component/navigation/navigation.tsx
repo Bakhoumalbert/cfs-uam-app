@@ -1,8 +1,13 @@
 import Link from "next/link"
 import { Container } from "../container/container"
 import { ActiveLink } from "./active-link"
+import { useAuth } from "@/context/AuthUserContext"
 
 export const Navigation = () => {
+  const { authUser, authUserIsLoading } = useAuth();
+  console.log("authUser : ", authUser);
+  console.log("authUserIsLoading : ", authUserIsLoading);
+  
   return (
     <div className="border-b-2 border-gray-400">
       <Container className="flex items-center justify-between py-1.5 gap-2">

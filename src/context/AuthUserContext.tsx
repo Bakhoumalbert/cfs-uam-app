@@ -1,6 +1,6 @@
 import UserFirebaseAuth from "@/hooks/use-firebase-auth";
 import { UserDocument } from "@/types/users";
-import { createContext } from "react";
+import { useContext, createContext } from "react";
 
 const init = {
     uid: "",
@@ -26,10 +26,19 @@ export function AuthUserProvider({ children }: Props) {
     
     return(
         <authUserContext.Provider value={{
-            authUser,
-            authUserIsLoading: 
+            authUser: auth.authUser as {
+                uid: string;
+                email: string;
+                displayName: string;
+                emailVerified: boolean;
+                phoneNumber: string;
+                photoURL: string;
+                userDocument: UserDocument;
+            },
+            authUserIsLoading: auth.authUserIsLoading
         }}>
             {children}
         </authUserContext.Provider>
     )
 }
+export const useAuth = () => useContext(authUserContext);

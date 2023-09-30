@@ -3,6 +3,7 @@ import { UserDocument, UserInterface } from "@/types/users";
 import { User, onAuthStateChanged } from "firebase/auth";
 import { doc, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
+
 export default function UserFirebaseAuth() {
 
     const [authUser, setAuthUser] = useState<UserInterface | null>(null);
@@ -22,13 +23,20 @@ export default function UserFirebaseAuth() {
             const documentRef = doc(db, "users", auth.currentUser.uid)
             const compacUser = user;
             
-            onSnapshot(documentRef,async (doc) => {
+            const test = onSnapshot(documentRef,async (doc) => {
                 if(doc.exists()){
-                    compacUser.userDocument = doc.data() as UserDocument
+                    compacUser.userDocument = doc.data() as UserDocument;
                 }
-                setAuthUser(compacUser);
+                setAuthUser((prevAuthUser) => (
+                    {
+                        ...prevAuthUser,
+                        ...compacUser
+                    }
+                ));
                 setAuthUserIsLoading(false);
             })
+            console.log('error onSnapshot : ', test);
+            
         }
     }
 
@@ -41,7 +49,6 @@ export default function UserFirebaseAuth() {
         setAuthUserIsLoading(true);
         const formattedUser = formatAuthUser(authState);
         await getUserDocument(formattedUser)
-        setAuthUser(formattedUser);
     }
 
     useEffect(() => {

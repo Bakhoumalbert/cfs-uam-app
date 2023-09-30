@@ -3,15 +3,15 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAINE,
-  projectId: process.env.NEXT_PUBLIC_PROJET_ID,
-  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_APP_ID 
+  apiKey: "AIzaSyAqcUDga5R8CFvxu5GHA4IWOpmz_EuO5nE",
+  authDomain: "cfs-uam.firebaseapp.com",
+  projectId: "cfs-uam",
+  storageBucket: "cfs-uam.appspot.com",
+  messagingSenderId: "985096775237",
+  appId: "1:985096775237:web:832b6f25a686207deba52c"
 };
 
 // Initialize Firebase
-export const app = initializeApp(firebaseConfig);
+  export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);

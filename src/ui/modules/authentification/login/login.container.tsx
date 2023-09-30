@@ -1,10 +1,7 @@
-import { LoginFormFielsType, RegisterFormFielsType } from "@/types/forms";
+import { LoginFormFielsType } from "@/types/forms";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useToggle } from "@/hooks/use-toggle";
 import { LoginView } from "./login.view";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "@/config/firebase-config";
-import { useEffect } from "react";
 import { firebaseSignInUser } from "@/api/authentication";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
@@ -13,18 +10,6 @@ export const LoginContainer = () => {
 
   const router = useRouter()
   const { value: isLoading, setValue:setIsLoading } = useToggle();
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const uid = user.uid;
-        console.log("user : ", user);
-        
-      } else {
-        console.log("Tu n'est pas connecter");
-      }
-    });
-  }, [])
 
   const {
     register,

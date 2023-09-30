@@ -5,7 +5,7 @@ import { useToggle } from "@/hooks/use-toggle";
 import { firebaseCreateUser, sendEmailVerificationProcedure } from "@/api/authentication";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
-import { FirestoreCreateUserDocument, firestoreCreateUserDocument } from "@/api/firestore";
+import { FirestoreCreateUserDocument } from "@/api/firestore";
 
 export const RegisterContainer = () => {
 
@@ -22,51 +22,37 @@ export const RegisterContainer = () => {
   } = useForm<RegisterFormFielsType>();
 
   const handleCreateUserDocument = async (collectionName: string, documentID: string, document: object) => {
-    console.log("Before create document and user the error ");
     const { error } = await FirestoreCreateUserDocument(collectionName, documentID, document);
-    console.log("error : ", error);
-    
-    console.log("after create document");
     
     if (error) {
       toast.error(error.message);
       setIsLoading(false);
       return;
     }
-    console.log("Before create document");
     toast.success("Bienvenue sur l'app du club Fédérateur des sciences de l'UAM ")
     setIsLoading(false);
     reset()
-    sendEmailVerificationProcedure()
+    // router.push("/")
+    // sendEmailVerificationProcedure()
 
   }
 
   const handleCreateUserAuthentification = async ({ email, password }: RegisterFormFielsType) => {
-    console.log("before creating user");
     const { error, data } = await firebaseCreateUser(email, password);
-    console.log("after created user");
-
-    console.log("data of authentification : ", data?.uid);
-    
     
     if (error) {
       setIsLoading(false);
       toast.error(error.message);
       return;
     }
-    console.log("Avant");
     
     const userDocumentData = {
       email: email,
       uid: data.uid,
       creation_date: new Date(),
     }
-    console.log("dedans");
-    console.log('user data : ', data);
-    
     
     handleCreateUserDocument("users", data.uid, userDocumentData);
-    console.log("Après");
     
   }
 
